@@ -7,14 +7,14 @@ import routes from './routes/routes.js';
 const app = express();
 app.use(cors());
 app.use(express.json());
-
+app.use(routes);
 
 
 
 connectDb()
 .then(()=>{
     app.listen(process.env.PORT,()=>{
-        console.log(`server is running on the port: ${process.env.PORT}`);
+        console.log(`server is running on the port: ${process.env.PORT}`)
     });
 })
 .catch((err)=>console.log(err.message))

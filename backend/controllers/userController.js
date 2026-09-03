@@ -1,5 +1,4 @@
 import jwt from 'jsonwebtoken';
-import bcryptjs from 'bcryptjs';
 import userModel from '../models/userModel.js';
 import bcrypt from 'bcryptjs';
 
@@ -13,15 +12,15 @@ export const registerUser = async (req,res) => {
             throw new Error("fields are empty");
         }
 
-        const existingUser = await userModel.find({email});
+        const existingUser = await userModel.findOne({email});
 
         if(existingUser){
             res.status(400);
             throw new Error("user aalready exists");
         }
 
-        const salt = await bcryptjs.genSalt(10);
-        const hash = await bcryptjs.hash(password,salt);
+        const salt = await bcrypt.genSalt(10);
+        const hash = await bcrypt.hash(password,salt);
 
         const user = await userModel.create({
             name,
@@ -56,9 +55,9 @@ export const loginUser = async (req,res) => {
         if(userExists && (await bcrypt.compare(password,userExists.password))){
             res.status(200).json({
                 _id:userExists.id,
-                name:user.name,
-                email:user.email,
-                token:generateToken(_id)
+                name:userExists.name,
+                email:userExists.email,
+                token:generateToken(userExists._id)
             });
         }
 
@@ -80,7 +79,7 @@ export const getMe = async (req,res) => {
 }
 
 export const generateToken = (id) => {
-    return jwt.sign(id,process.env.JWT_SECRET,{
+    return jwt.sign({id},process.env.JWT_SECRET,{
         'expiresIn':'30d'
     });
 };
