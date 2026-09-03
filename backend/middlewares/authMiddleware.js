@@ -14,10 +14,11 @@ export const protect = async(req,res,next)=>{
                 next();
             }
             catch(err){
-                console.log(err.message);
+                res.status(401);
+                throw new Error("user not authorized");
             }
-    
         }
+        
         if(!token){
             res.status(400);
             throw new Error("token is empty");

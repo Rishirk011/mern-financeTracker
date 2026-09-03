@@ -1,6 +1,6 @@
 import mongoose from "mongoose";
 
-const userSchema = new mongoose.model(
+const userSchema = new mongoose.Schema(
     {
         name:{
             type:String,
@@ -16,7 +16,8 @@ const userSchema = new mongoose.model(
             required:true
         }
     },
-    {timeStamps:true}
+    {timestamps:true}
+
 );
 
 
