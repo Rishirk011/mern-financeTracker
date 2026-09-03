@@ -7,7 +7,7 @@ import routes from './routes/routes.js';
 const app = express();
 app.use(cors());
 app.use(express.json());
-
+console.log("dhanush");
 
 
 
