@@ -9,10 +9,10 @@ import { Router } from 'express';
 
 const transactionRoute = Router();
 
-transactionRouter.get('/',protect,getTransaction);
-transactionRouter.post('/',protect,addTransaction);
-transactionRouter.put('/:id',protect,updateTransaction);
-transactionRouter.delete('/:id',protect,deleteTransaction);
+transactionRoute.get('/',protect,getTransaction);
+transactionRoute.post('/',protect,addTransaction);
+transactionRoute.put('/:id',protect,updateTransaction);
+transactionRoute.delete('/:id',protect,deleteTransaction);
 
 export default transactionRoute;
 
