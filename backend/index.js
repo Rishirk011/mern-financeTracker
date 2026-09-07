@@ -8,6 +8,7 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 
+app.use(routes);
 
 
 
@@ -18,3 +19,4 @@ connectDb()
     });
 })
 .catch((err)=>console.log(err.message))
+
