@@ -18,4 +18,3 @@ export const total = asyncHandler(async (req,res) => {
 
 });
 
-

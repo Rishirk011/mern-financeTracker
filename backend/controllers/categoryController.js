@@ -5,8 +5,7 @@ import transactionModel from "../models/transactionModel.js";
 const getByCategory = (asyncHandler(async (req,res) => {
 
     const id = req.user._id;
-    console.log(id);
-    
+
     const category = await transactionModel.aggregate([
 
         { $match : {user : req.user._id, type : 'expense'}},
@@ -19,3 +18,4 @@ const getByCategory = (asyncHandler(async (req,res) => {
 }));
 
 export default getByCategory;
+
